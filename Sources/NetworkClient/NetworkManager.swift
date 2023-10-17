@@ -19,8 +19,8 @@ extension URLSession: NetworkSession {
     }
 }
 
-class NetworkManager {
-    private let session: NetworkSession
+public class NetworkManager {
+    let session: NetworkSession
     
     init(session: NetworkSession = URLSession.shared) {
         self.session = session

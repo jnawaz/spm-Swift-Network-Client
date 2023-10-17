@@ -25,7 +25,7 @@ public enum ContentType: String {
     case multipartForm = "multipart/form-data"
 }
 
-protocol WebServiceConfiguration {
+public protocol WebServiceConfiguration {
     associatedtype Response: Decodable
 
     var baseUrl: URL { get set }
@@ -42,7 +42,7 @@ extension WebServiceConfiguration {
 }
 
 // MARK: Default configuration
-extension WebServiceConfiguration {
+ extension WebServiceConfiguration {
     var baseUrl: URL { return URL(string: "")! }
     var method: HTTPMethod { .get }
     var queryParameters: [URLQueryItem]? { return nil }
