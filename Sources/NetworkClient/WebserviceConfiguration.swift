@@ -62,7 +62,7 @@ extension WebServiceConfiguration {
 
 // MARK: Request Execution
 extension WebServiceConfiguration {
-    func start(completion: @escaping (WebServiceResult<Response>) -> Void) {
+    public func start(completion: @escaping (WebServiceResult<Response>) -> Void) {
 
         let request = createRequest()
 
