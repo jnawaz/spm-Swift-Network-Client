@@ -7,26 +7,26 @@
 
 import Foundation
 
-protocol NetworkSession {
+public protocol NetworkSession {
     func loadData(from request: URLRequest, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void)
 }
 
 extension URLSession: NetworkSession {
 
-    func loadData(from request: URLRequest, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) {
+    public func loadData(from request: URLRequest, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) {
         let task = dataTask(with: request, completionHandler: completionHandler)
         task.resume()
     }
 }
 
 public class NetworkManager {
-    let session: NetworkSession
+    public let session: NetworkSession
     
-    init(session: NetworkSession = URLSession.shared) {
+    public init(session: NetworkSession = URLSession.shared) {
         self.session = session
     }
     
-    func request(_ request: URLRequest, completion: @escaping (Data?, URLResponse?, Error?) -> Void) {
+    public func request(_ request: URLRequest, completion: @escaping (Data?, URLResponse?, Error?) -> Void) {
         session.loadData(from: request, completionHandler: completion)
     }
 }
