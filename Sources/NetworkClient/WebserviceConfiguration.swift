@@ -33,6 +33,7 @@ public protocol WebServiceConfiguration {
     var pathComponents: [String] {get}
     var queryParameters: [URLQueryItem]? { get }
     var networkManager: NetworkManager { get }
+    var additionalHeaders: [String: String]? { get }
 }
 
 extension WebServiceConfiguration {
@@ -46,6 +47,7 @@ extension WebServiceConfiguration {
     var baseUrl: URL { return URL(string: "")! }
     var method: HTTPMethod { .get }
     var queryParameters: [URLQueryItem]? { return nil }
+     var additionalHeaders: [String: String]? { return nil }
 
     var decoder: JSONDecoder {
         let decoder = JSONDecoder()
@@ -95,6 +97,12 @@ extension WebServiceConfiguration {
         //create request
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = method.rawValue
+
+        if let requestHeaders = additionalHeaders {
+            requestHeaders.forEach({ (httpHeader: String, value: String) in
+                urlRequest.addValue(value, forHTTPHeaderField: httpHeader)
+            })
+        }
 
         return urlRequest
     }
