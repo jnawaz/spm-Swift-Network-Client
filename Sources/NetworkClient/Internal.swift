@@ -8,7 +8,7 @@
 import Foundation
 
 internal class Internal {
-    func doSomething() {
+    internal func doSomething() {
         print("nowts happening")
     }
 }
